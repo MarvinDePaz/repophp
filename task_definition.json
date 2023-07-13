@@ -1,14 +1,13 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-2:709019650326:task-definition/marvinpaz-app:1",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-2:709019650326:task-definition/marvindepaz:1",
     "containerDefinitions": [
         {
-            "name": "marvinpaz-app",
-            "image": "709019650326.dkr.ecr.us-east-2.amazonaws.com/marvinpaz-app",
+            "name": "marvindepaz",
+            "image": "709019650326.dkr.ecr.us-east-2.amazonaws.com/marvindepaz",
             "cpu": 0,
-            "memory": 1024,
             "portMappings": [
                 {
-                    "name": "marvinpaz-app-80-tcp",
+                    "name": "marvindepaz-80-tcp",
                     "containerPort": 80,
                     "hostPort": 80,
                     "protocol": "tcp",
@@ -23,9 +22,10 @@
             "ulimits": []
         }
     ],
-    "family": "marvinpaz-app",
+    "family": "marvindepaz",
+    "taskRoleArn": "arn:aws:iam::709019650326:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::709019650326:role/ecsTaskExecutionRole",
-    "networkMode": "bridge",
+    "networkMode": "awsvpc",
     "revision": 1,
     "volumes": [],
     "status": "ACTIVE",
@@ -34,26 +34,33 @@
             "name": "com.amazonaws.ecs.capability.ecr-auth"
         },
         {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
             "name": "ecs.capability.execution-role-ecr-pull"
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
         }
     ],
     "placementConstraints": [],
     "compatibilities": [
-        "EC2"
+        "EC2",
+        "FARGATE"
     ],
     "requiresCompatibilities": [
-        "EC2"
+        "FARGATE"
     ],
-    "cpu": "1024",
+    "cpu": "512",
     "memory": "1024",
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-07-12T00:30:32.130Z",
+    "registeredAt": "2023-07-13T03:50:33.442Z",
     "registeredBy": "arn:aws:iam::709019650326:root",
     "tags": []
 }
